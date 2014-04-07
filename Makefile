@@ -1,8 +1,6 @@
 CC=g++
 CFLAGS=-I.
 
-ODIR=obj
-
 VPATH= $(ODIR) src
 
 
@@ -11,21 +9,21 @@ LIBS=-lglut -lGL -lGLU
 pingpong: moteur.o testApp.o
 	$(CC) -o $@ $^ -I. $(LIBS)
 
-test: 	moteurDebug.o testApp.o
+test: moteurDebug.o testApp.o
 	$(CC) -o $@ $^ -I. $(LIBS)
 
-testApp.o: testApp.cpp
+testApp.o: src/testApp.cpp
 	$(CC) -c -o $@ $^ $(CFLAGS)
      
 
-moteur.o: moteur.cpp moteur.h
+moteur.o: src/moteur.cpp src/moteur.h
 	$(CC) -c -o $@ $< $(CFLAGS)
 
-moteurDebug.o: moteur.cpp moteur.h
+moteurDebug.o: src/moteur.cpp src/moteur.h
 	$(CC) -c -o $@ $< $(CFLAGS) -DDEBUG 
   
 .PHONY: clean
 
-#clean:
-#	rm -f *.o  
+clean:
+	rm -f *.o 
 
